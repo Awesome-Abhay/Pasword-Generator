@@ -6,7 +6,26 @@ function App() {
   const [charAllowed, setCharAllowed]= useState(false);
   const [numAllowed, setNumAllowed]= useState(false);
   const [password, setPassword]= useState('');
+  
   let passwordRef= useRef(null);
+
+// Code to copy the content inside div. if input is replaced by div.
+
+// first create a selection object from window.
+// then create a range object from document.
+// target and select the text through range.selectNodeContent(targetText).
+// clear all previous selection through selection.removeAllRanges().
+// add new content/range to selection object through selection.addRange(range).
+
+  // const copyToClipboard = () => {
+  //   const selection = window.getSelection();   // gets current text selection object from the browser. 
+  //   const range = document.createRange(); // creates a range object which represents a portion of document.
+  //   range.selectNodeContents(passwordRef.current);  // full text inside the element is selected.
+  //   selection.removeAllRanges();                    // remove all previous selections.
+  //   selection.addRange(range);                      // add the newly created range to the selection.
+  //   window.navigator.clipboard.writeText(password); // copy the password to clipboard.
+  // };
+
 
   function copyPasswordToClipboard() {
     passwordRef.current?.select();
@@ -14,7 +33,7 @@ function App() {
     window.navigator.clipboard.writeText(password);  
   }
 
-  let generatePassword=useCallback(()=>{
+  let generatePassword= useCallback(()=>{
     let password='';
     let string='ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
     if(charAllowed) string+='.,<>?/{}[]$#%^&*!@';
